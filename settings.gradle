@@ -1,0 +1,5 @@
+rootProject.name = 'game-be'
+include 'betting'
+include 'payout'
+include 'common'
+

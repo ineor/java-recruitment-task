@@ -1,0 +1,68 @@
+plugins {
+    id 'org.springframework.boot' version '2.5.6'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
+    id 'idea'
+    id 'com.google.cloud.tools.jib' version '3.1.4'
+}
+
+group = 'si.ineor.gaming'
+version = '0.0.1'
+sourceCompatibility = '11'
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+    floggerVersion = '0.7.1'
+    springdocOpenApiVersion = '1.5.12'
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-web-services'
+    // spring-doc
+    implementation "org.springdoc:springdoc-openapi-ui:$springdocOpenApiVersion"
+
+    //lombok
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
+    runtimeOnly 'org.postgresql:postgresql'
+
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    // flogger
+    implementation "com.google.flogger:flogger:$floggerVersion"
+    runtimeOnly "com.google.flogger:flogger-system-backend:$floggerVersion"
+
+    // import common project
+    implementation project(':common')
+}
+
+test {
+    useJUnitPlatform()
+}
+
+jib {
+    from {
+        image = 'amazoncorretto:11'
+    }
+    container {
+        creationTime = "USE_CURRENT_TIMESTAMP"
+        ports = ['8080', '5005']
+        jvmFlags = ['-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005']
+        labels = [maintainer: 'domen.petric@ineor.si']
+    }
+}

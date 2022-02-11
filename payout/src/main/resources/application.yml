@@ -1,0 +1,42 @@
+server:
+  port: ${PORT:8080}
+
+swagger:
+  enabled: ${SWAGGER_ENABLED:true}
+
+logging:
+  level:
+    si.ineor.gaming.betting: DEBUG
+  file:
+    name: payout-be.log
+
+spring:
+  datasource:
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:}
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/payout}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: ${JPA_DDL:none}
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        enable_lazy_load_no_trans: true
+    show-sql: ${JPA_SHOW_SQL:false}
+  session:
+    store-type: none
+  main:
+    allow-bean-definition-overriding: true
+
+springdoc:
+  swagger-ui:
+    path: ${SPRINGDOC_SWAGGER_UI_PATH:/payout-be/swagger/swagger-ui.html}
+  api-docs:
+    path: ${SPRINGDOC_API_DOCS_PATH:/payout-be/openapi/v3/api-docs}
+
+swagger-custom:
+  app-name: ${CUSTOM_APP_NAME:Payout Service API}
+  app-version: ${CUSTOM_APP_VERSION:v0.0.1}
+
+
