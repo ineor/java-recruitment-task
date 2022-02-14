@@ -23,6 +23,7 @@ repositories {
 ext {
     floggerVersion = '0.7.1'
     springdocOpenApiVersion = '1.5.12'
+    querydslVersion = '5.0.0'
 }
 
 dependencies {
@@ -49,7 +50,18 @@ dependencies {
 
     // import common project
     implementation project(':common')
+
+    implementation "com.querydsl:querydsl-jpa:$querydslVersion"
+    implementation "com.querydsl:querydsl-apt:$querydslVersion"
+
+    annotationProcessor(
+            "com.querydsl:querydsl-apt:$querydslVersion:jpa",
+            "javax.annotation:javax.annotation-api:1.3.2",
+            "org.hibernate.javax.persistence:hibernate-jpa-2.1-api:1.0.2.Final"
+    )
+
 }
+
 
 test {
     useJUnitPlatform()

@@ -1,4 +1,4 @@
-# Game BE
+# Game
 
 ## Introduction
 
@@ -26,7 +26,7 @@ service crashes work will be continued from where it ended.
     1) Insert new betting ticket
     2) Edit existing betting ticket that was not yet evaluated
     3) Delete existing betting ticket that was not yet evaluated
-    4) List betting tickets with filtering, sorting and pagination
+    4) List betting tickets with pagination (Optional bonus filtering and sorting )
     5) Evaluation cronjob that runs every 5 minutes and checks all tickets with match time before current time and:
         1) even ID as winning ticket,
         2) odd ID as losing ticket.
@@ -52,6 +52,9 @@ service crashes work will be continued from where it ended.
         3) Countries starting with S -> taxation = (standard_rate+reduced_rate_alt)/2*bruto_amount
         4) Countries starting with U -> taxation = standard_rate*(reduced_rate_alt*bruto_amount)
     4) All monetary values must be calculated and rounded to 2 decimal values (HALF_UP)
+    5) Optionally add unit tests for taxation calculations implemented in 3)
 3) Build containers with all applications
 4) Write docker-compose script for running whole application
 5) Document how to use your provided applications.
+
+## Documentation
