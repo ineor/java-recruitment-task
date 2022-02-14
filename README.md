@@ -52,7 +52,7 @@ service crashes work will be continued from where it ended.
         3) Countries starting with S -> taxation = (standard_rate+reduced_rate_alt)/2*bruto_amount
         4) Countries starting with U -> taxation = standard_rate*(reduced_rate_alt*bruto_amount)
     4) All monetary values must be calculated and rounded to 2 decimal values (HALF_UP)
-    5) Optionally add unit tests for taxation calculations implemented in 3)
+    5) Optionally add unit tests for taxation calculations implemented in iii)
 3) Build containers with all applications
 4) Write docker-compose script for running whole application
 5) Document how to use your provided applications.
